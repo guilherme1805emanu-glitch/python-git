@@ -13,6 +13,7 @@ pip install -r requeriments.txt
 ## Rodando a aplicação
 
 ```bash
+pip install mysql-connector-python
 uvicorn main:app --reload
 ``` 
 
