@@ -4,8 +4,6 @@ WORKDIR /usr/src/app
 
 COPY . . 
 
-RUN python -m venv .venv
-RUN .\.ven\Scripts\activate
 RUN pip install -r .\requeriments.txt
 
 EXPOSE 8000
