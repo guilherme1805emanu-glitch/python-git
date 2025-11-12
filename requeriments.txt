@@ -3,3 +3,4 @@ uvicorn==0.37.0
 pydantic
 pymysql
 python-dotenv
+cryptography
