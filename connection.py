@@ -1,9 +1,13 @@
-import mysql.connector
+from pymysql import connect
+import os
+import dotenv
 
-conexaoBanco= mysql.connector.connect(
-    host="centerbeam.proxy.rlwy.net",
-    port=59356,
-    user="root",
-    password="niZZKBtVchrdhWTgjhoTVILgFVFMTWce",
-    database="guilherme"
+dotenv.load_dotenv()
+
+conexaoBanco= connect(
+    host= os.getenv("DATABASE_HOST"),
+    port=int(os.getenv("DATABASE_PORT")),
+    user=os.getenv("DATABASE_USER"),
+    password=os.getenv("DATABASE_PASSWORD"),
+    database=os.getenv("DATABASE_DB"),
 )
