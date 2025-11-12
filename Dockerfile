@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY . . 
 
-RUN pip install -r .\requeriments.txt
+RUN pip install -r requeriments.txt
 
 EXPOSE 8000
 
