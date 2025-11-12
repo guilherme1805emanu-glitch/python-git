@@ -15,7 +15,7 @@ class Aluno(BaseModel):
 # SELECIONANDO O ALUNO
 @aluno_router.get("/")
 def get_Aluno():
-    cursor=conexaoBanco.cursor(dictionary=True)
+    cursor=conexaoBanco.cursor()
     comando_sql="SELECT * FROM Aluno"
     cursor.execute(comando_sql)
     resultado_consulta=cursor.fetchall()
@@ -24,7 +24,7 @@ def get_Aluno():
 # ADICIONANDO ALUNO SE NÃO TIVER SIDO CRIADO AINDA
 @aluno_router.post("/")
 def post_Aluno(item:Aluno):
-    cursor=conexaoBanco.cursor(dictionary=True)
+    cursor=conexaoBanco.cursor()
     comando_sql_verificar='SELECT * FROM Aluno WHERE nome=%(nome)s'
     cursor.execute(comando_sql_verificar, {'nome': item.nome})
     resultado_consulta= cursor.fetchone()
@@ -40,7 +40,7 @@ def post_Aluno(item:Aluno):
 # ATUALIZANDO/ALTERANDO O ALUNO
 @aluno_router.patch("/{id}")
 def patch_Aluno(item:Aluno,id:int):
-    cursor= conexaoBanco.cursor(dictionary=True)
+    cursor= conexaoBanco.cursor()
     comando_sql='SELECT * FROM Aluno WHERE id=%(id)s'
     cursor.execute(comando_sql, {'id': id})
     resultado_consulta= cursor.fetchone()
@@ -56,7 +56,7 @@ def patch_Aluno(item:Aluno,id:int):
 # DELETANDO UM ALUNO
 @aluno_router.delete("/{id}")
 def delete_Aluno(id:int):
-    cursor=conexaoBanco.cursor(dictionary=True)
+    cursor=conexaoBanco.cursor()
     comando_sql='SELECT * FROM Aluno WHERE id=%(id)s'
     cursor.execute(comando_sql, {'id': id})
     resultado_consulta= cursor.fetchone()

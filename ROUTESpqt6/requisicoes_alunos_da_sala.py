@@ -12,7 +12,7 @@ class alunos_da_sala(BaseModel):
 # SELECIONANDO Os ALUNOs
 @alunos_da_sala_router.get("/")
 def get_Aluno_da_sala():
-    cursor=conexaoBanco.cursor(dictionary=True)
+    cursor=conexaoBanco.cursor()
     comando_sql="SELECT * FROM alunos_salas_de_aula"
     cursor.execute(comando_sql)
     resultado_consulta=cursor.fetchall()
@@ -21,7 +21,7 @@ def get_Aluno_da_sala():
 # ADICIONANDO ALUNOS NA TABELA alunos_salas_de_aula SE NÃO TIVER SIDO ADICIONADO AINDA.
 @alunos_da_sala_router.post("/")
 def post_Aluno_na_sala(aluno_sala:alunos_da_sala):
-    cursor=conexaoBanco.cursor(dictionary=True)
+    cursor=conexaoBanco.cursor()
     comando_sql_verificacao="SELECT * FROM alunos_salas_de_aula WHERE id_aluno=%s AND id_sala=%s"
     valores_verificacao=(aluno_sala.id_aluno,aluno_sala.id_sala)
     cursor.execute(comando_sql_verificacao,valores_verificacao)
@@ -40,7 +40,7 @@ def post_Aluno_na_sala(aluno_sala:alunos_da_sala):
 # ATUALIZANDO/MODIFICANDO O ID DA SALA DE UM ALUNO
 @alunos_da_sala_router.patch("/{id_aluno}")
 def patch_Aluno_na_sala(id_aluno:int, aluno_sala:alunos_da_sala):
-    cursor=conexaoBanco.cursor(dictionary=True)
+    cursor=conexaoBanco.cursor()
     comando_sql_verificacao="SELECT * FROM alunos_salas_de_aula WHERE id_aluno=%s"
     valores_verificacao=(id_aluno,)
     cursor.execute(comando_sql_verificacao,valores_verificacao)
@@ -59,7 +59,7 @@ def patch_Aluno_na_sala(id_aluno:int, aluno_sala:alunos_da_sala):
 # DELETANDO UM ALUNO DA SALA
 @alunos_da_sala_router.delete("/{id_aluno}")
 def delete_Aluno_da_sala(id_aluno:int):
-    cursor=conexaoBanco.cursor(dictionary=True)
+    cursor=conexaoBanco.cursor()
     comando_sql_verificacao="SELECT * FROM alunos_salas_de_aula WHERE id_aluno=%s"
     valores_verificacao=(id_aluno,)
     cursor.execute(comando_sql_verificacao,valores_verificacao)
